@@ -9,6 +9,16 @@ on:
   pull_request:
     branches: [ master ]
 
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: spacebankdb
+  pool: 5
+  username: root
+  password: admin1
+  socket: /tmp/mysql.sock
+  
 jobs:
   build:
 
