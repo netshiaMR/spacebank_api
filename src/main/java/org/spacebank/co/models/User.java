@@ -1,6 +1,5 @@
 package org.spacebank.co.models;
 
-
 import org.hibernate.annotations.NaturalId;
 import org.spacebank.co.models.audit.DateAudit;
 
