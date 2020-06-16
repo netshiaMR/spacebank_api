@@ -9,10 +9,10 @@ import org.spacebank.co.exception.AppException;
 import org.spacebank.co.models.Role;
 import org.spacebank.co.models.RoleName;
 import org.spacebank.co.models.User;
-import org.spacebank.co.payload.ApiResponse;
-import org.spacebank.co.payload.JwtAuthenticationResponse;
-import org.spacebank.co.payload.LoginRequest;
-import org.spacebank.co.payload.SignUpRequest;
+import org.spacebank.co.payload.request.SignUpHttpRequest;
+import org.spacebank.co.payload.request.SignInHttpRequest;
+import org.spacebank.co.payload.response.ApiHttpResponse;
+import org.spacebank.co.payload.response.JwtAuthenticationResponse;
 import org.spacebank.co.repository.RoleRepository;
 import org.spacebank.co.repository.UserRepository;
 import org.spacebank.co.security.JwtTokenProvider;
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping(value = "auth")
+@RequestMapping(value = "/api/auth")
 public class AuthController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -44,11 +44,12 @@ public class AuthController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private JwtTokenProvider tokenProvider;
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody SignInHttpRequest loginRequest) {
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsernameOrEmail(), loginRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -58,15 +59,16 @@ public class AuthController {
 	}
 
 	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			return new ResponseEntity(new ApiResponse(false, "Username is already taken!"), HttpStatus.BAD_REQUEST);
+	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpHttpRequest signUpHttpRequest) {
+		if (userRepository.existsByUsername(signUpHttpRequest.getUsername())) {
+			return new ResponseEntity(new ApiHttpResponse(false, "Username is already taken!"), HttpStatus.BAD_REQUEST);
 		}
-		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"), HttpStatus.BAD_REQUEST);
+		if (userRepository.existsByEmail(signUpHttpRequest.getEmail())) {
+			return new ResponseEntity(new ApiHttpResponse(false, "Email Address already in use!"), HttpStatus.BAD_REQUEST);
 		}
-		User userDateils = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
-				signUpRequest.getPassword());
+		// more check 
+		User userDateils = new User(signUpHttpRequest.getName() , signUpHttpRequest.getUsername(), signUpHttpRequest.getEmail(),
+				signUpHttpRequest.getPassword());
 
 		userDateils.setPassword(passwordEncoder.encode(userDateils.getPassword()));
 
@@ -80,6 +82,6 @@ public class AuthController {
 		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/{username}")
 				.buildAndExpand(result.getUsername()).toUri();
 
-		return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+		return ResponseEntity.created(location).body(new ApiHttpResponse(true, "User registered successfully"));
 	}
 }

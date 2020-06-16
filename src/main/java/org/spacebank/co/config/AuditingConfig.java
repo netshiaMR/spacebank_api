@@ -2,7 +2,7 @@ package org.spacebank.co.config;
 
 import java.util.Optional;
 
-import org.spacebank.co.security.UserPrincipal;
+import org.spacebank.co.services.UserPrincipal;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -22,6 +22,7 @@ public class AuditingConfig {
 	class SpringSecurityAuditAwareImpl implements AuditorAware<Long> {
 
 		@Override
+		
 		public Optional<Long> getCurrentAuditor() {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

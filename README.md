@@ -45,6 +45,7 @@ spacebank_api open source REST API for Banking
 	```sql
 	INSERT IGNORE INTO roles(name) VALUES('ROLE_USER');
 	INSERT IGNORE INTO roles(name) VALUES('ROLE_ADMIN');
+	INSERT IGNORE INTO roles(name) VALUES('ROLE_INVESTOR');
 	```
 
 	Any new user who signs up to the app is assigned the `ROLE_USER` by default.
