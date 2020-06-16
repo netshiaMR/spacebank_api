@@ -18,15 +18,14 @@ jobs:
     - uses:  samin/mysql-action@v1.3
       name: Start Mysql
       with:
-        host port: 3306 # optional, default is 3306
-        container port: 3306 # optional, default is 3306
-        character set server: utf8mb4 # optional, default is utf8mb4
-        collation server: utf8mb4_general_ci # optional, default is utf8mb4_general_ci
-        mysql version: '8.0'  # optional, default is latest
-        mysql root password: root # optional, default is 
-        mysql database: spacebankdb # optional, default is 
-        mysql user: root # optional, default is 
-        mysql password: admin # optional, default is 
+        host port: 3306
+        container port: 3306
+        character set server: utf8mb4
+        collation server: utf8mb4_general_ci 
+        mysql root password: admin1 
+        mysql database: spacebankdb  
+        mysql user: root
+        mysql password: admin
       
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
