@@ -1,4 +1,4 @@
-package org.spacebank.co.payload;
+package org.spacebank.co.payload.response;
 
 public class JwtAuthenticationResponse {
 	private String accessToken;

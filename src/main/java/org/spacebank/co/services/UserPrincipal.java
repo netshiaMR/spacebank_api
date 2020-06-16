@@ -1,4 +1,4 @@
-package org.spacebank.co.security;
+package org.spacebank.co.services;
 
 import java.util.Collection;
 import java.util.List;

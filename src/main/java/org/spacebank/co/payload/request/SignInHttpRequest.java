@@ -1,8 +1,8 @@
-package org.spacebank.co.payload;
+package org.spacebank.co.payload.request;
 
 import javax.validation.constraints.NotBlank;
 
-public class LoginRequest {
+public class SignInHttpRequest {
     @NotBlank
     private String usernameOrEmail;
 
