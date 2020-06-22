@@ -18,7 +18,7 @@ public class AccountController {
 	private AccountService accountService;
 	
     @RequestMapping(value = "/account", method = RequestMethod.POST)
-    public AccountHttpResponse addAccount(AccountHttpRequest request) {
+    public AccountHttpResponse openAccount(AccountHttpRequest request) {
     	return null;
     }
     

@@ -31,7 +31,8 @@ public class Accounts extends DateAudit {
     @Column(name="card_id")
 	private Long card_id;
 
-    @Column(length = 15)
+    @Size(max = 15)
+    @Column(name="branch_code")
 	private String branch_code;
     
 	@NotBlank

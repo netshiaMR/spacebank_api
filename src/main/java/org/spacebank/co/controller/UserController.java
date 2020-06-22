@@ -28,9 +28,9 @@ public class UserController {
 	private UserRepository userRepository;
 
 	@GetMapping("/user/me")
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public UserSummary getCurrentUser(@CurrentUser UserPrincipal currentUser) {
-		UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUsername(), currentUser.getName(),
+		UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUsername(), currentUser.getFirstName(),
 				currentUser.getAuthorities());
 		return userSummary;
 	}
@@ -51,7 +51,7 @@ public class UserController {
 	public UserProfile getUserProfile(@PathVariable(value = "username") String username) {
 		User user = userRepository.findByUsername(username)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
-		UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getName(),
+		UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getFirstName() + " " + user.getLastName() + " " + user.getMiddleName(),
 				user.getCreatedAt());
 		return userProfile;
 	}

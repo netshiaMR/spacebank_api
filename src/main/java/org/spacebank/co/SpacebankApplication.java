@@ -20,6 +20,11 @@ public class SpacebankApplication {
 	void init() {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 	}
+	@org.springframework.context.annotation.Bean
+    public org.springframework.web.context.request.RequestContextListener requestContextListener() {
+        return new org.springframework.web.context.request.RequestContextListener();
+    }
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpacebankApplication.class, args);
 	}

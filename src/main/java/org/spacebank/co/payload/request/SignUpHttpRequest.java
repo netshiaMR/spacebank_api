@@ -5,11 +5,26 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class SignUpHttpRequest {
+	
 	@NotBlank
 	@Size(min = 4, max = 40)
-	private String name;
+	private String firstName;
+	
+	@NotBlank
+	@Size(min = 4, max = 40)
+	private String lastName;
+	
+	private String middleName;
+	
+	@NotBlank
+	@Size(min = 4, max = 40)
+	private String cellNumber;
+	
+	@NotBlank
+	@Size(min = 4, max = 200)
+	private String address;
 
-	@Size(max = 40)
+	@Size(max = 100)
 	@Email
 	private String email;
 
@@ -20,22 +35,45 @@ public class SignUpHttpRequest {
 	@NotBlank
 	@Size(min = 6, max = 20)
 	private String password;
-	
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getCellNumber() {
+		return cellNumber;
+	}
+
+	public void setCellNumber(String cellNumber) {
+		this.cellNumber = cellNumber;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getEmail() {
@@ -46,6 +84,14 @@ public class SignUpHttpRequest {
 		this.email = email;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -53,4 +99,7 @@ public class SignUpHttpRequest {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+	
 }

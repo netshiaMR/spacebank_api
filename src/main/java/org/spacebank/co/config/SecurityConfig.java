@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
-public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
@@ -73,7 +73,9 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js").permitAll()
                     .antMatchers("/api/accounts/**").permitAll()  
-//                    .antMatchers("/api/payments/**").permitAll()
+                    .antMatchers("/api/user/**").permitAll()
+                    .antMatchers("/api/confirm/**").permitAll()
+//                  .antMatchers("/api/payments/**").permitAll()
 //                    .antMatchers("/api/transactions/**").permitAll()
 //                    .antMatchers("/api/deposit/**").permitAll()
 //                    .antMatchers("/api/withdrawal/**").permitAll()
