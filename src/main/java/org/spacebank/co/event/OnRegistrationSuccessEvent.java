@@ -26,14 +26,6 @@ public class OnRegistrationSuccessEvent extends ApplicationEvent {
 		this.appUrl = appUrl;
 	}
 
-	public Locale getLocale() {
-		return locale;
-	}
-
-	public void setLocale(Locale locale) {
-		this.locale = locale;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -42,4 +34,13 @@ public class OnRegistrationSuccessEvent extends ApplicationEvent {
 		this.user = user;
 	}
 
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+
+	
 }
